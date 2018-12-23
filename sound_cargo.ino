@@ -1,3 +1,12 @@
+/*
+ * 赤外線リモコン＆磁石でプラレール（＋MP3サウンド）をコントロール！　2018/03/17　7M4MON
+ * プラレールの貨車に搭載し、リモコンからプラレールの発車・停止・速度(4段階)をコントロールする。
+ * 受け取ったリモコンコードに応じてサウンドも鳴らす。
+ * 磁石の上を通ったら停止する。ただし、通過モード時は通過。
+ * 最大30,720バイトのフラッシュメモリのうち、スケッチが11,148バイト（36%）を使っています。
+ * 最大2,048バイトのRAMのうち、グローバル変数が501バイト（24%）を使っていて、ローカル変数で1,547バイト使うことができます。
+ */
+
 #include <EEPROM.h>
 #include <boarddefs.h>
 #include <IRremote.h>
@@ -62,7 +71,7 @@ void setup () {
   mp3_volume = mp3_volume > VOL_MAX ? VOL_MAX :
                mp3_volume < VOL_MIN ? VOL_MIN :
                mp3_volume;
-	mp3_set_volume (mp3_volume);
+  mp3_set_volume (mp3_volume);
   last_volume = mp3_volume;
   train_speed = 0;
   delay (300);
@@ -174,4 +183,3 @@ void loop() {
     stopping = true;
   }
 }
-
